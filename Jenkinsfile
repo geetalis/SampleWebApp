@@ -1,20 +1,21 @@
 pipeline{
 	agent any
+	tools{
+		maven localMaven
+	}
+	
 	stages{
-		stage('Init'){
-			steps{
-				echo "Initialising"
-			}
-		}
 		stage('Build'){
 			steps{
-				echo "Building"
+				bat 'mvn clean package'
+			}
+			post{
+				success {
+					echo 'Successfull in Building'
+					archiveArtifacts artifacts: '**/*.war'
+				}
 			}
 		}
-		stage('Deploying'){
-			steps{
-				echo "Deploying"
-			}
-		}
+		
 	}
 }
