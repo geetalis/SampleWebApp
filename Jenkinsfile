@@ -4,7 +4,7 @@ pipeline{
 	environment{
 		def dockerHome = tool('LocalDocker')
 		def mavenHome  = tool('LocalMaven')
-		env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+		env.PATH = '${dockerHome}/bin:${mavenHome}/bin:${env.PATH}'
 	}
 	agent any
 	
