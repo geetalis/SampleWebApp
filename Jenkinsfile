@@ -1,7 +1,10 @@
-def dockerHome = tool 'LocalDocker'
-def mavenHome  = tool 'LocalMaven'
+
 
 pipeline{
+	environment{
+		def dockerHome = tool('LocalDocker')
+		def mavenHome  = tool('LocalMaven')
+	}
 	agent any
 	
 	stages{
