@@ -5,7 +5,15 @@ pipeline{
 		docker 'Docker'
 	}
 	
+
+	
 	stages{
+		stage('Initialize'){
+        		def dockerHome = tool 'LocalDocker'
+        		def mavenHome  = tool 'LocalMaven'
+        		env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+    		}
+
 		stage('Build'){
 			steps{
 				sh 'mvn clean package'
