@@ -1,13 +1,11 @@
 
 
 pipeline{
-	environment{
-		def dockerHome = tool('LocalDocker')
-		PATH = '${dockerHome}/bin:${env.PATH}'
-	}
+
 	agent any
 	tools{
 		maven 'LocalMaven'
+		docker 'LocalDocker'
 	}
 	
 	stages{
@@ -24,7 +22,6 @@ pipeline{
 		}
 		stage('Build Docker Image'){
 			steps{
-				echo "PATH=$PATH"
 				sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
 			}
 		}
