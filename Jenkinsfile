@@ -3,7 +3,7 @@
 pipeline{
 	environment{
 		def dockerHome = tool 'LocalDocker'
-        	env.PATH = "${dockerHome}/bin:${env.PATH}"
+        	PATH = "${dockerHome}/bin:${env.PATH}"
 	}
 agent { dockerfile true }
 	tools{
