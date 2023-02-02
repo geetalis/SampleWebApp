@@ -1,11 +1,9 @@
 
 
 pipeline{
-
-	agent any
+agent { dockerfile true }
 	tools{
 		maven "LocalMaven"
-		docker "LocalDocker"
 	}
 	
 	stages{
