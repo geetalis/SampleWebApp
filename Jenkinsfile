@@ -5,7 +5,7 @@ pipeline{
 		def dockerHome = tool 'LocalDocker'
         	PATH = "${dockerHome}/bin:${env.PATH}"
 	}
-agent { dockerfile true }
+agent any
 	tools{
 		maven "LocalMaven"
 	}
