@@ -7,6 +7,12 @@ agent { dockerfile true }
 	}
 	
 	stages{
+		stage('Initialize Docker'){
+			steps{
+        			def dockerHome = tool 'LocalDocker'
+        			env.PATH = "${dockerHome}/bin:${env.PATH}"
+			}
+    		}
 		stage('Build'){
 			steps{
 				sh 'mvn clean package'
@@ -18,12 +24,6 @@ agent { dockerfile true }
 				}
 			}
 		}
-		stage('Initialize Docker'){
-			steps{
-        			def dockerHome = tool 'LocalDocker'
-        			env.PATH = "${dockerHome}/bin:${env.PATH}"
-			}
-    		}
 		stage('Build Docker Image'){
 			steps{
 				sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
