@@ -1,18 +1,16 @@
 
 
 pipeline{
+	environment{
+		def dockerHome = tool 'LocalDocker'
+        	env.PATH = "${dockerHome}/bin:${env.PATH}"
+	}
 agent { dockerfile true }
 	tools{
 		maven "LocalMaven"
 	}
 	
 	stages{
-		stage('Initialize Docker'){
-			steps{
-        			def dockerHome = tool 'LocalDocker'
-        			env.PATH = "${dockerHome}/bin:${env.PATH}"
-			}
-    		}
 		stage('Build'){
 			steps{
 				sh 'mvn clean package'
