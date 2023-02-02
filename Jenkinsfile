@@ -7,7 +7,7 @@ pipeline{
 		PATH = '${dockerHome}/bin:${mavenHome}/bin:${env.PATH}'
 	}
 	agent any
-	tool{
+	tools{
 		maven 'LocalMaven'
 	}
 	
