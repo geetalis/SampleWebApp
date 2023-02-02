@@ -7,6 +7,9 @@ pipeline{
 		PATH = '${dockerHome}/bin:${mavenHome}/bin:${env.PATH}'
 	}
 	agent any
+	tool{
+		maven 'LocalMaven'
+	}
 	
 	stages{
 		stage('Build'){
