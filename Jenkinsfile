@@ -18,6 +18,10 @@ agent { dockerfile true }
 				}
 			}
 		}
+		stage('Initialize Docker'){
+        		def dockerHome = tool 'LocalDocker'
+        		env.PATH = "${dockerHome}/bin:${env.PATH}"
+    		}
 		stage('Build Docker Image'){
 			steps{
 				sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
